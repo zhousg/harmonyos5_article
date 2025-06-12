@@ -1,0 +1,69 @@
+# 基于HarmonyOS的文本处理与情感分析案例
+
+## 内容摘要
+本文介绍了如何在HarmonyOS中使用 `@kit.NaturalLanguageKit` 进行文本分词，并实现一个简单的情感分析功能。通过创建一个 `TextProcessingWordSegment` 组件，用户可以输入评价文本，点击按钮进行情感分析，最终显示评价的情感倾向（积极、消极或中性）。
+
+## 实现步骤
+1. 导入 `@kit.NaturalLanguageKit` 中的 `textProcessing` 模块。
+2. 创建 `TextProcessingWordSegment` 组件，包含文本输入框、显示结果的文本和分析按钮。
+3. 实现点击按钮的事件处理函数，调用 `textProcessing.getWordSegment` 进行分词。
+4. 创建 `SentimentAnalysisService` 类，根据分词结果进行情感分析。
+5. 根据情感得分显示最终的情感标签。
+
+## 落地代码
+### 1. 导入模块和定义组件
+```typescript
+import { textProcessing } from '@kit.NaturalLanguageKit'; 
+
+@Entry 
+@Component 
+struct TextProcessingWordSegment { 
+  @State comment: string = '物流很快，包装很好，产品特别满意'; 
+  @State label: string = '' 
+
+  build() { 
+    Column({ space: 20 }) { 
+      TextArea({ text: this.comment }) 
+        .height(200) 
+      Text('评价性质：'+ this.label) 
+      Button('情感分析') 
+        .onClick(async () => { 
+          const results = await textProcessing.getWordSegment(this.comment) 
+          const words = results.map(item => item.word) 
+          const service = new SentimentAnalysisService() 
+          this.label = service.analyze(words) 
+        }) 
+    } 
+    .padding(15) 
+    .height('100%') 
+    .width('100%') 
+  } 
+} 
+```
+
+### 2. 情感分析服务类
+```typescript
+// 情感分析服务类 
+class SentimentAnalysisService { 
+  private positiveWords = ['好', '满意', '棒', '优秀', '快']; 
+  private negativeWords = ['差', '慢', '贵', '糟糕', '不满意']; 
+
+  analyze(words: string[]) { 
+    let score = 0.5; 
+    words.forEach(word => { 
+      if (this.positiveWords.includes(word)) { 
+        score += 0.1; 
+      } 
+      if (this.negativeWords.includes(word)) { 
+        score -= 0.1; 
+      } 
+    }); 
+    score = Math.max(0, Math.min(1, score)); 
+    const label = score > 0.6 ? '积极' : score < 0.4 ? '消极' : '中性'; 
+    return label; 
+  } 
+} 
+```
+
+## 总结
+本次案例展示了在HarmonyOS中使用 `@kit.NaturalLanguageKit` 进行文本处理和实现简单情感分析的方法。通过创建组件和服务类，我们实现了文本输入、分词和情感分析的功能。关键知识点包括HarmonyOS组件的创建、状态管理、异步函数的使用以及简单的情感分析算法。这种方法可以作为基础，扩展更多复杂的自然语言处理功能。
