@@ -1,7 +1,6 @@
 ## Case Description
 This is a background replacement case based on AI basic visual services. After selecting an image from the device's photo album, it performs intelligent segmentation on the subject and supports dynamically changing the background color.
 
-![Insert image description here](https://i-blog.csdnimg.cn/direct/03f6abcd8e93452f8611b79f4664aa63.png)
 
 ## Implementation Steps:
 ### 1. Module Import and Component Definition
