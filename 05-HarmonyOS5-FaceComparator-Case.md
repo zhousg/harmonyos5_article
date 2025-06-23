@@ -1,7 +1,6 @@
 ## Case Description
 This is a face comparison case implemented based on AI basic vision services. By selecting two images from the device's photo album, it performs face feature comparison and displays the similarity calculation result.
 
-![Insert image description here](https://i-blog.csdnimg.cn/direct/bcf64e7c0be64fa6aaa8af0efbe2e7ec.png)
 
 ## Implementation Steps:
 ### 1. Module Import
