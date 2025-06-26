@@ -1,8 +1,6 @@
 ## Case Description
 This is a real-time speech-to-text case implemented based on AI basic voice services. It collects audio through a microphone and converts it into text in real-time.
 
-![Insert image description here](https://i-blog.csdnimg.cn/direct/005f6cb30e1f43f8aa623e7f08c92bf3.png)
-
 ## Implementation Steps:
 ### 1. Import Necessary Modules
 ```typescript

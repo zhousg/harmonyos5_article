@@ -1,6 +1,5 @@
 ## Case Description
 This is a text-to-speech case implemented based on AI basic voice services.
-![Insert image description here](https://i-blog.csdnimg.cn/direct/36a0671fde3647c7a5707f0d7e7f8a7b.png)
 
 ## Implementation Steps:
 ### 1. Import Necessary Modules
