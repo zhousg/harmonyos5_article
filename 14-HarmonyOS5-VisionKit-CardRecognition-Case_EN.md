@@ -94,3 +94,13 @@ struct VisionKitCardRecognition {
 
 ## Summary
 This case demonstrates how to use `@kit.VisionKit` to implement card recognition in HarmonyOS 5.0. The key knowledge points include the configuration and use of the `CardRecognition` component, the handling of recognition results, and the display of card data. These methods can be used to develop various applications that require card recognition functions.
+
+## Application Scenarios
+The card recognition control provides structured recognition services for ID cards (currently only supporting those issued in China), driving licenses, vehicle licenses, passports, and bank cards. It meets the automatic classification function of cards, allowing the system to automatically determine the type of the card and return structured information and card image information.
+
+For scenarios where card information needs to be filled, such as ID card and bank card information, you can use the card recognition control to read OCR (Optical Character Recognition) information. After the result information is returned, it can be filled in. It supports single - side (front or back) recognition or double - side recognition simultaneously.
+
+## Constraints
+Supported languages: Simplified Chinese, English.
+Currently, card recognition only supports 5 types of cards: ID cards, vehicle licenses, driving licenses, passports, and bank cards.
+It is not allowed to be blocked by other components or windows.

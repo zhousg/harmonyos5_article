@@ -56,5 +56,32 @@ struct VisionKitDocumentScanner {
 } 
 ```
 
+## 其他配置
+
+```
+aboutToAppear() {
+    this.docScanConfig.supportType = [DocType.DOC, DocType.SHEET]
+    this.docScanConfig.isGallerySupported = true
+    this.docScanConfig.editTabs = []
+    this.docScanConfig.maxShotCount = 3
+    this.docScanConfig.defaultFilterId = FilterId.ORIGINAL
+    this.docScanConfig.defaultShootingMode = ShootingMode.MANUAL
+    this.docScanConfig.isShareable = true
+    this.docScanConfig.originalUris = []
+  }
+```
+
 ## 总结
 本案例展示了如何在 HarmonyOS 5.0 中使用 `@hms.ai.DocumentScanner` 实现文档扫描功能。关键知识点包括文档扫描器的配置和使用、扫描结果的处理以及扫描结果的展示。这些方法可用于开发各种需要文档扫描功能的应用程序。
+
+
+# 适用场景
+文档扫描控件提供拍摄文档并转换为高清扫描件的服务。仅需使用手机拍摄文档，即可自动裁剪和优化，并支持图片、PDF格式保存和分享；同时支持拍摄或从图库选择图片识别表格，生成表格文档。
+
+可广泛用于教育办公场景，扫描文档、票据、课堂PPT和书籍等输出图片/PDF供用户完成发送、存档等操作。
+
+## 约束限制
+
+支持的语种类型：简体中文、英文。
+文档扫描暂时只支持phone、tablet设备。
+不允许被其他组件或窗口遮挡。

@@ -67,3 +67,16 @@ class SentimentAnalysisService {
 
 ## Conclusion
 This case demonstrates the method of using `@kit.NaturalLanguageKit` for text processing and implementing simple sentiment analysis in HarmonyOS. By creating components and a service class, we have implemented the functions of text input, word segmentation, and sentiment analysis. The key knowledge points include the creation of HarmonyOS components, state management, the use of asynchronous functions, and simple sentiment analysis algorithms. This method can serve as a foundation to expand more complex natural language processing functions.
+
+## Kit Introduction
+
+Natural Language Kit (Natural Language Understanding Service) provides several basic capabilities related to text semantic understanding, helping developers better process and analyze text data. Specifically, it includes the following aspects:
+
+Word Segmentation: It can split a piece of text into independent word units and identify each word in a sentence. This is a fundamental step in natural language processing, laying the foundation for subsequent tasks such as semantic analysis and information extraction.
+Entity Extraction: It can identify entities with specific meanings from text, such as person names, place names, dates, numbers, phone numbers, email addresses, etc. This entity information plays an important role in many scenarios, such as information retrieval, knowledge graph construction, and intelligent Q&A.
+Developers can leverage the above - mentioned capabilities, combine them with their own business scenarios, and develop various intelligent applications to achieve their business goals.
+
+## Constraints
+
+Supported Languages: Simplified Chinese, English, Traditional Chinese.
+Text Length: No more than 1000 characters.

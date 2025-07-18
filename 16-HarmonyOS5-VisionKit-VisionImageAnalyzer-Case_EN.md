@@ -52,3 +52,12 @@ struct VisionKitVisionImageAnalyzer {
 
 ## Summary
 This case demonstrates how to use `visionImageAnalyzer` from `@kit.VisionKit` for image text analysis in HarmonyOS 5.0. The key knowledge points include the initialization of the image analysis controller, the setup of listener callbacks, and the display of analysis results. These methods can be used to develop applications that require image text analysis functions.
+
+## Application Scenarios
+AI image recognition aggregates AI capabilities such as OCR (Optical Character Recognition), subject segmentation, entity recognition, and multi - object recognition to provide scene - based text recognition, subject segmentation, and image recognition search functions. The main switch for the AI image recognition function is located in the list of basic control APIs. If you accept the default interaction and functions of AI image recognition, you only need to use the relevant enabling interfaces provided by the basic controls to turn on the function switch. The APIs supporting this document are used in conjunction with basic controls, mainly to meet your customization requirements, help you achieve fine - grained control over the interaction of the AI image recognition function, and obtain analysis results such as text recognition and image segmentation for the development of extended services. Currently, the supported basic controls include Image, Video, and XComponent. Specifically, in combination with the Image control, the image recognition function for static images can be achieved; in combination with the Video control, the image recognition function for paused frames during video playback can be achieved; in combination with the XComponent, the image recognition function in scenarios such as custom rendering can be achieved.
+
+## Constraints
+Supported text languages: Simplified Chinese, Traditional Chinese, English, Uyghur, and Tibetan.
+The minimum supported image resolution is 100*100.
+The images to be analyzed must be static non - vector images. That is, image types such as SVG and GIF are not supported for analysis. PixelMap can be passed for analysis, and currently only the RGBA_8888 type is supported.
+The minimum width - to - height ratio for translatable images is 1:3 (the height is less than 3 times the width), and the minimum width - to - height ratio for text - recognizable images is 1:7 (the height is less than 7 times the width).

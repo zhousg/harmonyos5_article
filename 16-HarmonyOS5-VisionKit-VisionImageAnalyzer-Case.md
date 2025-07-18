@@ -52,3 +52,8 @@ struct VisionKitVisionImageAnalyzer {
 
 ## 总结
 本案例展示了在 HarmonyOS 5.0 中使用 `@kit.VisionKit` 的 `visionImageAnalyzer` 进行图像文字分析的方法。关键知识点包括图像分析控制器的初始化、监听回调的设置以及分析结果的展示。这些方法可用于开发需要图像文字分析功能的应用程序。
+
+## 适用场景
+
+
+## 约束限制

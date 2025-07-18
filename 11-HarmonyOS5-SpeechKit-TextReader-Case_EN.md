@@ -77,3 +77,12 @@ struct SpeechKitTextReader {
 
 ## Summary
 This case demonstrates how to use `@kit.SpeechKit` to implement the text reading function in HarmonyOS 5.0. The key knowledge points include component lifecycle management (`aboutToAppear` and `aboutToDisappear`), initialization and release of the text reader, monitoring of the reading status, and construction of UI components. These methods can serve as a foundation for expanding more complex voice - related functions.
+
+
+## Application Scenarios
+Speech Kit (Scenario-based Voice Service) integrates voice AI capabilities, including the TextReader control and the AICaptionComponent control. These capabilities facilitate user-device interaction and enable text reading. The TextReader control has a wide range of applications. For example, when users are unable to view screen text, it can read news aloud to provide information. The AICaptionComponent control is also widely used. For instance, when users are unfamiliar with the audio source language or have the device on mute, it can provide subtitles.
+
+## Constraints
+- Supported Languages: Chinese.
+- Device Restrictions: This Kit is only applicable to Phone, Tablet, and 2-in-1 devices.
+- Region Restrictions: This Kit only provides services within China (excluding Hong Kong, Macau, and Taiwan of China).

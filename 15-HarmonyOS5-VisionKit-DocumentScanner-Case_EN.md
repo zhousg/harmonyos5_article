@@ -56,5 +56,30 @@ struct VisionKitDocumentScanner {
 } 
 ```
 
+## Other Configurations
+
+```
+aboutToAppear() {
+    this.docScanConfig.supportType = [DocType.DOC, DocType.SHEET]
+    this.docScanConfig.isGallerySupported = true
+    this.docScanConfig.editTabs = []
+    this.docScanConfig.maxShotCount = 3
+    this.docScanConfig.defaultFilterId = FilterId.ORIGINAL
+    this.docScanConfig.defaultShootingMode = ShootingMode.MANUAL
+    this.docScanConfig.isShareable = true
+    this.docScanConfig.originalUris = []
+  }
+```
+
 ## Summary
 This case demonstrates how to use `@hms.ai.DocumentScanner` to implement the document scanning function in HarmonyOS 5.0. The key knowledge points include the configuration and use of the document scanner, the handling of scanning results, and the display of scanning results. These methods can be used to develop various applications that require document scanning functions.
+
+# Application Scenarios
+The document scanning control provides a service to capture documents and convert them into high - definition scanned copies. Users only need to use their mobile phones to take pictures of documents, which will be automatically cropped and optimized. It supports saving and sharing in image and PDF formats. Meanwhile, it supports capturing images or selecting images from the gallery to recognize tables and generate table documents.
+
+It can be widely used in educational and office scenarios. Users can scan documents, bills, classroom PPTs, books, etc., and output images/PDFs to complete operations such as sending and archiving.
+
+## Constraints
+Supported languages: Simplified Chinese, English.
+Currently, document scanning only supports phones and tablets.
+It is not allowed to be blocked by other components or windows.

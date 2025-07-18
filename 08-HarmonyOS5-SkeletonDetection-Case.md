@@ -1,7 +1,12 @@
 # Skeleton Detection Case Article
 
 ## Summary
-This article mainly introduces a case of implementing skeleton detection using the ArkTS language in HarmonyOS 5.0. By using `visionBase` and `skeletonDetector`, the detection of skeletal key points is performed. Meanwhile, the confidence threshold is lowered to enhance the flexibility of detection.
+This article primarily introduces a case of implementing skeleton detection using the ArkTS language on HarmonyOS 5.0. By leveraging `visionBase` and `skeletonDetector`, the detection of skeletal key points is carried out. Meanwhile, the confidence threshold is lowered to enhance the flexibility of detection.
+
+## Application Scenarios
+Human skeleton key point detection is mainly used to detect some key points of the human body and describe human skeletal information through these points. Specific applications are mainly concentrated in intelligent video surveillance, patient monitoring systems, human-computer interaction, virtual reality, human animation, smart homes, intelligent security, and athlete-assisted training, etc.
+
+It supports the recognition of 17 key points, specifically the nose, left and right eyes, left and right ears, left and right shoulders, left and right elbows, left and right wrists, left and right hips, left and right knees, and left and right ankles.
 
 ## Implementation Steps
 1. Define the request object.
@@ -43,5 +48,8 @@ let leftEar = getPoint(skeletonDetection.SkeletonPointType.LEFT_EAR);
 let rightEar = getPoint(skeletonDetection.SkeletonPointType.RIGHT_EAR);
 ```
 
+## Constraints
+The input image should have appropriate imaging quality (720p or higher is recommended). The height should be between 100px and 10000px, and the width should be between 100px and 10000px. The aspect ratio is recommended to be below 5:1 (the height is less than 5 times the width), and it is advisable to be close to the aspect ratio of a mobile phone screen.
+
 ## Conclusion
-The key knowledge point of this case lies in how to perform skeleton detection using the ArkTS language in HarmonyOS 5.0. By defining the request object, calling the processing method, and extracting key point data, the basic skeleton detection function is implemented. At the same time, lowering the confidence threshold can enhance the flexibility of detection to some extent, making the detection results more in line with actual requirements.
+The key knowledge point of this case lies in how to perform skeleton detection using the ArkTS language on HarmonyOS 5.0. By defining the request object, calling the processing method, and extracting key point data, the basic skeleton detection function is implemented. At the same time, lowering the confidence threshold can enhance the flexibility of detection to some extent, making the detection results more in line with actual requirements.

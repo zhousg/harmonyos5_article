@@ -59,3 +59,13 @@ struct VisionKitInteractiveLiveness {
 
 ## Summary
 This case demonstrates how to use `@kit.VisionKit` to implement interactive liveness detection in HarmonyOS 5.0. The key knowledge points include permission request and check, configuration of liveness detection settings, and starting the liveness detection process. These methods can serve as a foundation for developing more complex biometric - related functions.
+
+## Application Scenarios
+Face liveness detection supports the action-based liveness detection mode. This mode enables real-time face capture and requires users to perform specified actions to determine whether it is a real live person or a non-live attack (e.g., printed photos, face replay videos, and face masks).
+
+Note: Liveness detection is a system-based service that uses on-device algorithms and is free during the trial period. Developers are recommended to use it in low-risk business scenarios such as attendance check-in, auxiliary login, and real-name authentication. The on-device algorithms have been tested and certified by an authoritative organization (CFCA) on HarmonyOS NEXT/5.0.x. Given the high risks associated with payment and financial applications, developers are advised to conduct risk assessments and risk control strategy evaluations based on the existing security measures for different functional scenarios and take necessary security measures.
+
+## Constraints
+Supported text languages: Simplified Chinese, Traditional Chinese, English, Uyghur, and Tibetan.
+Supported broadcast languages: Simplified Chinese and English.
+The face liveness detection service does not support detection in landscape mode or split-screen mode.
