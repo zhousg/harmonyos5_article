@@ -76,3 +76,10 @@ AccountDetailBuilder() {
 
 ## Summary
 Key knowledge points include pop - up binding, asynchronous function calls, event addition, and list display. The `addCalendarEvent` method is used to add events, the `AccountDetailBuilder` component is used to display subscribed news events, and the `List` and `ForEach` components are used to display the event list.
+
+## Notes
+A schedule refers to a specific event or activity arrangement. Schedule management involves planning and controlling these events and activities, which can help make more effective use of relevant resources, improve productivity and efficiency, and enable people to better manage their time and tasks.
+
+In Calendar Kit, a schedule (Event) belongs to a corresponding calendar account (Calendar). One calendar account can have multiple schedules, and one schedule only belongs to one Calendar.
+
+After obtaining the calendar account object, you can manage the schedules under this account, including creating, deleting, modifying, and querying schedules. When creating or modifying a schedule, you can set relevant information such as the schedule's title, start time, end time, schedule type, schedule location, schedule reminder time, and schedule recurrence rules to achieve more comprehensive and effective schedule management.

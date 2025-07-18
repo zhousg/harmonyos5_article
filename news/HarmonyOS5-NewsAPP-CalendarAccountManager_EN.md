@@ -47,3 +47,17 @@ When clicking the account addition button, the `addAccount` method is called to 
 
 ## Summary
 Key knowledge points include the use of the `@Builder` decorator, button click event handling, asynchronous function calls, and state updates. Through these implementations, the functions of adding and deleting calendar accounts are achieved, and the account list display is updated after each operation.
+
+## Application Scenarios
+Calendar Kit provides calendar and schedule management capabilities, which generally refers to APIs (Application Programming Interfaces) that can be used to access and manipulate calendar data. These interfaces allow developers to integrate time - related schedule services from other applications (such as travel, dining, sports, and entertainment) with the system calendar, enabling functions such as schedule management, event creation, and query.
+
+One - click Schedule Service: Through a permanent authorization mechanism, after the user permits the current application to read and write the system calendar, developers can write the corresponding schedule services into the calendar in the form of deeplink. According to the reminder rules set by the developer, when the schedule is approaching or due, the corresponding "service buttons" will be displayed in the calendar application, calendar notifications, calendar cards, etc. Users can click these buttons to launch the jump link and directly reach the service landing page in one step.
+
+## Constraints and Limitations
+Currently, the relevant capabilities and interfaces of Calendar Kit can only be used in the Stage model.
+
+To use the relevant capabilities of Calendar Kit, you need to obtain the permissions to read or write calendars and schedules. For specific guidance, please refer to the permission declaration.
+
+When reading calendars or schedules, you need to apply for the `ohos.permission.READ_CALENDAR` permission.
+
+When adding, deleting, or modifying calendars or schedules, you need to apply for the `ohos.permission.WRITE_CALENDAR` permission.
