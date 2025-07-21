@@ -74,6 +74,23 @@ AccountDetailBuilder() {
 
 ![img06.png](img06.png)
 
+
+## 其他API说明
+
+getCalendarManager(context: Context): CalendarManager	根据上下文获取CalendarManager对象，用于管理日历。
+
+createCalendar(calendarAccount: CalendarAccount): Promise<Calendar>	根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。
+
+addEvent(event: Event): Promise<number>	创建日程，入参Event不填日程id，使用Promise异步回调。
+
+editEvent(event: Event): Promise<number>	创建单个日程，入参Event不填日程id，调用该接口会跳转到日程创建页面，使用Promise异步回调。
+
+deleteEvent(id: number): Promise<void>	删除指定日程id的日程，使用Promise异步回调。
+
+updateEvent(event: Event): Promise<void>	更新日程，使用Promise异步回调。
+
+getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise<Event[]>	获取Calendar下符合查询条件的Event，使用Promise异步回调。
+
 ## 总结
 关键知识点包括弹窗绑定、异步函数调用、事件添加和列表展示。通过 `addCalendarEvent` 方法添加事件，`AccountDetailBuilder` 组件展示订阅的新闻事件，借助 `List` 和 `ForEach` 组件展示事件列表。
 

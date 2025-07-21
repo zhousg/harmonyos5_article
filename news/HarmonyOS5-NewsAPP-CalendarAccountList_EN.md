@@ -3,6 +3,13 @@
 ## Abstract
 This article introduces the implementation of the `NewsLivePage` for the calendar account list in the HarmonyOS 5.0 news application. It uses the ArkTS language to implement functions such as calendar permission requests, calendar account creation, and list display.
 
+## Technical Introduction
+Calendar Kit (Calendar Service) provides calendar and schedule management capabilities, usually referring to APIs (Application Programming Interfaces) that can be used to access and manipulate calendar data. These interfaces allow developers to integrate time - related schedule services (such as travel, dining, sports, entertainment, etc.) from other applications into the system calendar, thereby achieving functions such as schedule management, event creation, and query.
+
+Calendar accounts are used to store and manage personal or team schedules. Through calendar accounts, users can easily view, edit, and share schedule information. The CalendarManager is used to manage Calendar accounts. A calendar account mainly contains account information `CalendarAccount` and configuration information `CalendarConfig`.
+
+Developers can create calendar accounts specific to their applications and perform operations such as adding, deleting, updating, and querying calendar accounts. In addition, each event `Event` belongs to a specific calendar account, and schedules under that account can be managed through the calendar account. For specific guidance, please refer to Schedule Management.
+
 ## Implementation Steps
 1. Initialize the context and calendar manager.
 2. Request calendar read and write permissions.

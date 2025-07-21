@@ -4,6 +4,7 @@
 本文主要介绍在HarmonyOS 5.0中使用ArkTS语言实现骨骼检测的案例。通过使用 `visionBase` 和 `skeletonDetector` 进行骨骼关键点的检测，同时降低了置信度要求以提高检测的灵活性。
 
 ## 适用场景
+Core Vision Kit（基础视觉服务）提供了机器视觉相关的基础能力，例如通用文字识别（即OCR，Optical Character Recognition，也称为光学字符识别）、人脸检测、人脸比对以及主体分割等能力。
 
 人体骨骼关键点检测，主要检测人体的一些关键点，通过关键点描述人体骨骼信息。具体应用主要集中在智能视频监控，病人监护系统，人机交互，虚拟现实，人体动画，智能家居，智能安防，运动员辅助训练等等。
 
@@ -55,3 +56,24 @@ let rightEar = getPoint(skeletonDetection.SkeletonPointType.RIGHT_EAR);
 
 ## 总结
 本次案例的关键知识点在于如何在HarmonyOS 5.0中使用ArkTS语言进行骨骼检测。通过定义请求对象、调用处理方法和提取关键点数据，实现了基本的骨骼检测功能。同时，降低置信度要求可以在一定程度上提高检测的灵活性，使检测结果更加符合实际需求。
+
+## 扩展
+
+如何将图库图片转换成 PixelMap 格式？
+
+```typescript
+  const photoPicker: photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+  const photoPickerResult = await photoPicker.select({
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE, maxSelectNumber: 1
+    })
+  const fileSource = await fileIo.open(name, fileIo.OpenMode.READ_ONLY);
+  const imageSource = image.createImageSource(fileSource.fd);
+  const chooseImage = await this.imageSource.createPixelMap();
+  await fileIo.close(fileSource);
+  // 步骤：
+  // 1. 先使用 photoPicker 选择一张图片
+  // 2. 再使用 fileIo.open 打开图片文件
+  // 3. 再使用 image.createImageSource 创建图片源
+  // 4. 最后使用 createPixelMap 方法将图片源转换为 PixelMap 格式
+  // 5. 转换完成后，即可使用 PixelMap 格式的图片进行骨骼检测
+```

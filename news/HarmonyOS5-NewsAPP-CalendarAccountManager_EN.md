@@ -45,6 +45,27 @@ DeleteBuilder (calendar: calendarManager.Calendar) {
 ### 3. Operation Logic Explanation
 When clicking the account addition button, the `addAccount` method is called to create the corresponding type of calendar account, and then the account list is updated. When clicking the delete button, the `deleteCalendar` method is called to delete the specified account, and the account list is also updated.
 
+## Other API Explanations
+
+getCalendarManager(context: Context): CalendarManager	Get the `CalendarManager` object based on the context to manage calendars.
+
+createCalendar(calendarAccount: CalendarAccount): Promise<Calendar>	Create a `Calendar` object based on the calendar account information using a Promise for asynchronous callbacks.
+
+getCalendar(calendarAccount?: CalendarAccount): Promise<Calendar>
+Get the default `Calendar` object or a specified `Calendar` object using a Promise for asynchronous callbacks.
+
+The default `Calendar` is created when the calendar storage runs for the first time. If you don't care about the `Calendar` attribution when creating an `Event`, you don't need to create a `Calendar` through `createCalendar()`. You can directly use the default `Calendar`.
+
+getAllCalendars(): Promise<Calendar[]>	Get all `Calendar` objects created by the current application and the default `Calendar` object using a Promise for asynchronous callbacks.
+
+deleteCalendar(calendar: Calendar): Promise<void>	Delete the specified `Calendar` object using a Promise for asynchronous callbacks.
+
+getConfig(): CalendarConfig	Get the calendar configuration information.
+
+setConfig(config: CalendarConfig): Promise<void>	Set the calendar configuration information using a Promise for asynchronous callbacks.
+
+getAccount(): CalendarAccount	Get the calendar account information.
+
 ## Summary
 Key knowledge points include the use of the `@Builder` decorator, button click event handling, asynchronous function calls, and state updates. Through these implementations, the functions of adding and deleting calendar accounts are achieved, and the account list display is updated after each operation.
 

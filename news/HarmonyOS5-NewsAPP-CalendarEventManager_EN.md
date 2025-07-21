@@ -77,6 +77,22 @@ AccountDetailBuilder() {
 ## Summary
 Key knowledge points include pop - up binding, asynchronous function calls, event addition, and list display. The `addCalendarEvent` method is used to add events, the `AccountDetailBuilder` component is used to display subscribed news events, and the `List` and `ForEach` components are used to display the event list.
 
+## Other API Explanations
+
+getCalendarManager(context: Context): CalendarManager	Get the CalendarManager object based on the context to manage the calendar.
+
+createCalendar(calendarAccount: CalendarAccount): Promise<Calendar>	Create a Calendar object based on the calendar account information using a Promise asynchronous callback.
+
+addEvent(event: Event): Promise<number>	Create an event. The input parameter Event does not need to include the event ID. Use a Promise asynchronous callback.
+
+editEvent(event: Event): Promise<number>	Create a single event. The input parameter Event does not need to include the event ID. Calling this interface will redirect to the event creation page. Use a Promise asynchronous callback.
+
+deleteEvent(id: number): Promise<void>	Delete the event with the specified event ID using a Promise asynchronous callback.
+
+updateEvent(event: Event): Promise<void>	Update an event using a Promise asynchronous callback.
+
+getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise<Event[]>	Get the events under the Calendar that match the query conditions using a Promise asynchronous callback.
+
 ## Notes
 A schedule refers to a specific event or activity arrangement. Schedule management involves planning and controlling these events and activities, which can help make more effective use of relevant resources, improve productivity and efficiency, and enable people to better manage their time and tasks.
 

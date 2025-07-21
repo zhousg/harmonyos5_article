@@ -45,6 +45,28 @@ DeleteBuilder (calendar: calendarManager.Calendar) {
 ### 3. 操作逻辑说明
 在点击添加账户按钮时，调用 `addAccount` 方法创建对应类型的日历账户，随后更新账户列表。点击删除按钮时，调用 `deleteCalendar` 方法删除指定账户，同样更新账户列表。
 
+## 其他API说明
+
+getCalendarManager(context: Context): CalendarManager	根据上下文获取日历管理器对象CalendarManager，用于管理日历。
+
+createCalendar(calendarAccount: CalendarAccount): Promise<Calendar>	根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。
+
+getCalendar(calendarAccount?: CalendarAccount): Promise<Calendar>	
+获取默认Calendar对象或者指定Calendar对象，使用Promise异步回调。
+
+默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过createCalendar()创建Calendar，直接使用默认Calendar。
+
+getAllCalendars(): Promise<Calendar[]>	获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。
+
+deleteCalendar(calendar: Calendar): Promise<void>	删除指定Calendar对象，使用Promise异步回调。
+
+getConfig(): CalendarConfig	获取日历配置信息。
+
+setConfig(config: CalendarConfig): Promise<void>	设置日历配置信息，使用Promise异步回调。
+
+getAccount(): CalendarAccount	获取日历账户信息。
+
+
 ## 总结
 关键知识点包括 `@Builder` 装饰器的使用、按钮点击事件处理、异步函数调用以及状态更新。通过这些实现了日历账户的添加和删除功能，并且每次操作后都会更新账户列表展示。
 

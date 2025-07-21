@@ -4,7 +4,9 @@
 This article primarily introduces a case of implementing skeleton detection using the ArkTS language on HarmonyOS 5.0. By leveraging `visionBase` and `skeletonDetector`, the detection of skeletal key points is carried out. Meanwhile, the confidence threshold is lowered to enhance the flexibility of detection.
 
 ## Application Scenarios
-Human skeleton key point detection is mainly used to detect some key points of the human body and describe human skeletal information through these points. Specific applications are mainly concentrated in intelligent video surveillance, patient monitoring systems, human-computer interaction, virtual reality, human animation, smart homes, intelligent security, and athlete-assisted training, etc.
+Core Vision Kit (Basic Vision Service) provides basic capabilities related to machine vision, such as general text recognition (i.e., OCR, Optical Character Recognition), face detection, face comparison, and subject segmentation.
+
+Human skeleton key point detection mainly detects some key points of the human body and describes human skeletal information through these points. Specific applications are mainly concentrated in intelligent video surveillance, patient monitoring systems, human-computer interaction, virtual reality, human animation, smart homes, intelligent security, athlete-assisted training, etc.
 
 It supports the recognition of 17 key points, specifically the nose, left and right eyes, left and right ears, left and right shoulders, left and right elbows, left and right wrists, left and right hips, left and right knees, and left and right ankles.
 
@@ -53,3 +55,24 @@ The input image should have appropriate imaging quality (720p or higher is recom
 
 ## Conclusion
 The key knowledge point of this case lies in how to perform skeleton detection using the ArkTS language on HarmonyOS 5.0. By defining the request object, calling the processing method, and extracting key point data, the basic skeleton detection function is implemented. At the same time, lowering the confidence threshold can enhance the flexibility of detection to some extent, making the detection results more in line with actual requirements.
+
+## Extension
+
+How to convert gallery images to PixelMap format?
+
+```typescript
+  const photoPicker: photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+  const photoPickerResult = await photoPicker.select({
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE, maxSelectNumber: 1
+    })
+  const fileSource = await fileIo.open(name, fileIo.OpenMode.READ_ONLY);
+  const imageSource = image.createImageSource(fileSource.fd);
+  const chooseImage = await this.imageSource.createPixelMap();
+  await fileIo.close(fileSource);
+  // Steps:
+  // 1. First, use photoPicker to select an image.
+  // 2. Then, use fileIo.open to open the image file.
+  // 3. Next, use image.createImageSource to create an image source.
+  // 4. Finally, use the createPixelMap method to convert the image source to PixelMap format.
+  // 5. After the conversion is complete, you can use the PixelMap - formatted image for skeleton detection.
+```

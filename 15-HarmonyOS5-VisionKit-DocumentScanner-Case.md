@@ -5,10 +5,64 @@
 
 ## 实现步骤
 1. 从 `@kit.ArkUI` 和 `@hms.ai.DocumentScanner` 导入相关模块。
+```typescript
+import { DocumentScanner, ScanConfig } from "@hms.ai.DocumentScanner";
+import { router } from "@kit.ArkUI";
+```
 2. 定义 `VisionKitDocumentScanner` 组件并设置文档图片 URI 状态。
+```typescript
+@Entry
+@Component
+struct VisionKitDocumentScanner {
+  @State docImageUri: string = '';
+}
+```
 3. 配置文档扫描器参数。
+```typescript
+const scanConfig: ScanConfig = {
+  scanMode: 0, // 0: Auto mode, 1: Manual mode
+  outputFormat: 0, // 0: JPEG, 1: PNG
+  quality: 90
+};
+```
 4. 构建 UI 界面，包含扫描结果展示区域和文档扫描器组件。
+```typescript
+  build() {
+    NavDestination() {
+      Stack({ alignContent: Alignment.Top }) {
+        if (this.docImageUri) {
+          Image(this.docImageUri)
+            .objectFit(ImageFit.Contain)
+            .width('80%')
+            .height('80%')
+        }
+
+        DocumentScanner({
+          scanConfig: scanConfig,
+          onScanResult: this.onScanResult
+        })
+        .width('100%')
+        .height('100%')
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .hideTitleBar(true)
+  }
+```
 5. 实现文档扫描器的回调函数，处理扫描结果并更新文档图片 URI 状态。
+```typescript
+  onScanResult = (result) => {
+    if (result.code === 0) {
+      this.docImageUri = result.imageUri;
+    } else {
+      console.error('Scan failed:', result.message);
+      router.back();
+    }
+  }
+```
 
 ## 落地代码
 ```typescript
@@ -58,7 +112,7 @@ struct VisionKitDocumentScanner {
 
 ## 其他配置
 
-```
+```typescript
 aboutToAppear() {
     this.docScanConfig.supportType = [DocType.DOC, DocType.SHEET]
     this.docScanConfig.isGallerySupported = true
@@ -69,6 +123,15 @@ aboutToAppear() {
     this.docScanConfig.isShareable = true
     this.docScanConfig.originalUris = []
   }
+  // 解释：
+  // supportType：支持的文档类型，支持 DocType.DOC 和 DocType.SHEET
+  // isGallerySupported：是否支持从图库选择图片
+  // editTabs：编辑选项卡，支持 DocEditTab.CROP、DocEditTab.ROTATE、DocEditTab.FILTER
+  // maxShotCount：最大拍摄次数
+  // defaultFilterId：默认的滤镜 ID
+  // defaultShootingMode：默认的拍摄模式
+  // isShareable：是否支持分享
+  // originalUris：原始图片 URI 列表
 ```
 
 ## 总结

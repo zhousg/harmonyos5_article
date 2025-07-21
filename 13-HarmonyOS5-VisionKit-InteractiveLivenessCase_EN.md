@@ -1,16 +1,31 @@
-# Case Study of Interactive Liveness Detection in VisionKit on HarmonyOS 5.0
+# Case Study of VisionKit Interactive Liveness Detection in HarmonyOS 5.0
 
-## Abstract
+## Content Summary
 This article introduces how to use `@kit.VisionKit` to implement the interactive liveness detection function in HarmonyOS 5.0. By creating the `VisionKitInteractiveLiveness` component, users can request camera permissions and start liveness detection.
 
 ## Implementation Steps
 1. Import relevant modules from `@kit.AbilityKit`, `@kit.VisionKit`, and `@kit.ArkUI`.
-2. Define the `VisionKitInteractiveLiveness` component and request camera permissions when the component is about to appear.
+2. Define the `VisionKitInteractiveLiveness` component and request camera permissions when the component is about to be displayed.
 3. Implement the `requestPermissions` method to request camera permissions and check the authorization results.
-4. Implement the `start` method to start interactive liveness detection after obtaining permissions.
-5. Build the UI interface, including a "Start Detection" button.
+4. Implement the `start` method to initiate interactive liveness detection after obtaining permissions.
+5. Build the UI interface, which includes a "Start Detection" button.
 
 ## Implementation Code
+
+- Configure permissions in `module.json5`
+
+```json
+"requestPermissions":[
+  {
+    "name": "ohos.permission.CAMERA",
+    "reason": "$string:camera_desc",
+    "usedScene": {"abilities": []}
+  }
+]
+```
+
+- Page code `VisionKitInteractiveLiveness.ets`
+
 ```typescript
 import { abilityAccessCtrl } from '@kit.AbilityKit'; 
 import { interactiveLiveness } from '@kit.VisionKit'; 
@@ -35,11 +50,18 @@ struct VisionKitInteractiveLiveness {
 
   async start () { 
     if (this.hasPermissions) { 
-      const routerOptions: interactiveLiveness.InteractiveLivenessConfig = { 
+      const routerOptions: interactiveLiveness.
+      InteractiveLivenessConfig = { 
         isSilentMode: 'INTERACTIVE_MODE' as interactiveLiveness.DetectionMode, 
         routeMode: 'back' as interactiveLiveness.RouteRedirectionMode, 
         actionsNum: 2, 
       } 
+      // isSilentMode: 'INTERACTIVE_MODE' as interactiveLiveness.DetectionMode, 
+      // indicates that the detection mode is interactive, meaning the user needs to perform specified actions to verify if it's a real person or a spoof attack.
+      // routeMode: 'back' as interactiveLiveness.RouteRedirectionMode, 
+      // indicates the routing mode after detection is completed, which means returning to the previous page after detection.
+      // actionsNum: 2, 
+      // indicates the number of actions the user needs to perform to verify if it's a real person.
       await interactiveLiveness.startLivenessDetection(routerOptions) 
     } 
   } 
@@ -58,14 +80,17 @@ struct VisionKitInteractiveLiveness {
 ```
 
 ## Summary
-This case demonstrates how to use `@kit.VisionKit` to implement interactive liveness detection in HarmonyOS 5.0. The key knowledge points include permission request and check, configuration of liveness detection settings, and starting the liveness detection process. These methods can serve as a foundation for developing more complex biometric - related functions.
+This case study demonstrates how to use `@kit.VisionKit` to implement interactive liveness detection in HarmonyOS 5.0. Key knowledge points include permission request and verification, configuration of liveness detection settings, and initiation of liveness detection. These methods can serve as a foundation for developing more complex biometric - related functions.
 
-## Application Scenarios
-Face liveness detection supports the action-based liveness detection mode. This mode enables real-time face capture and requires users to perform specified actions to determine whether it is a real live person or a non-live attack (e.g., printed photos, face replay videos, and face masks).
+## Applicable Scenarios
 
-Note: Liveness detection is a system-based service that uses on-device algorithms and is free during the trial period. Developers are recommended to use it in low-risk business scenarios such as attendance check-in, auxiliary login, and real-name authentication. The on-device algorithms have been tested and certified by an authoritative organization (CFCA) on HarmonyOS NEXT/5.0.x. Given the high risks associated with payment and financial applications, developers are advised to conduct risk assessments and risk control strategy evaluations based on the existing security measures for different functional scenarios and take necessary security measures.
+The action - based liveness detection and card recognition capabilities are free during the trial period, which ends on December 31, 2026. Before the official charging begins, Huawei will announce the charging adjustment through official channels in advance.
 
-## Constraints
-Supported text languages: Simplified Chinese, Traditional Chinese, English, Uyghur, and Tibetan.
-Supported broadcast languages: Simplified Chinese and English.
-The face liveness detection service does not support detection in landscape mode or split-screen mode.
+Face liveness detection supports the action - based liveness detection mode. This mode can capture faces in real - time and requires the user to perform specified actions to verify if it's a real person or a spoof attack (e.g., printed photos, face - remade videos, and face masks).
+
+Note: Liveness detection is a pure on - device algorithm and a free system - level service during the trial period. Developers are recommended to use it in low - risk business scenarios such as attendance checking, auxiliary login, and real - name authentication. The on - device algorithm has passed the certification of an authoritative organization (CFCA) in HarmonyOS NEXT/5.0.x. Given the high risks of payment and financial applications, developers are advised to conduct risk assessments and adopt necessary security measures based on the existing security features for different functional scenarios.
+
+## Constraints and Limitations
+- Supported text languages: Simplified Chinese, Traditional Chinese, English, Uyghur, and Tibetan.
+- Supported voice - broadcast languages: Simplified Chinese and English.
+- The face liveness detection service currently does not support landscape or split - screen detection.

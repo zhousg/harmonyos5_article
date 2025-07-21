@@ -5,12 +5,93 @@
 
 ## 实现步骤
 1. 导入 `@kit.VisionKit` 和 `@kit.ArkUI` 中的相关模块。
+```typescript
+import { CardRecognition, CardType, CardSide, ShootingMode } from "@kit.VisionKit" 
+import { router } from "@kit.ArkUI"; 
+```
 2. 定义 `VisionKitCardRecognition` 组件，设置证件数据状态。
+```typescript
+@Entry 
+@Component 
+struct VisionKitCardRecognition { 
+  @State cardDataSource: Record<string, string>[] = [] 
+}
+```
 3. 构建 UI 界面，包含证件数据展示区域和 `CardRecognition` 组件。
-4. 实现 `CardRecognition` 组件的回调函数，处理识别结果并更新证件数据状态。
-5. 实现 `cardDataShowBuilder` 方法，用于展示证件数据。
+```typescript
+  build() { 
+    NavDestination() { 
+      Stack({ alignContent: Alignment.Top }) { 
+        Stack() { 
+          this.cardDataShowBuilder() 
+        } 
+        .width('80%') 
+        .height('80%') 
 
-## 落地代码
+        CardRecognition({ 
+          supportType: CardType.CARD_ID, 
+          cardSide: CardSide.DEFAULT, 
+          cardRecognitionConfig: { 
+            defaultShootingMode: ShootingMode.MANUAL, 
+            isPhotoSelectionSupported: true 
+          }
+        })
+      } 
+      .width('100%') 
+      .height('100%') 
+    } 
+    .width('100%') 
+    .height('100%') 
+    .hideTitleBar(true) 
+  }
+```
+4. 实现 `CardRecognition` 组件的回调函数，处理识别结果并更新证件数据状态。
+```typescript
+  callback: ((params) => { 
+    if (params.code !== 200) { 
+      router.back() 
+    } 
+    if (params.cardInfo?.front !== undefined) { 
+      this.cardDataSource.push(params.cardInfo?.front) 
+    } 
+    if (params.cardInfo?.back !== undefined) { 
+      this.cardDataSource.push(params.cardInfo?.back) 
+    } 
+    if (params.cardInfo?.main !== undefined) { 
+      this.cardDataSource.push(params.cardInfo?.main) 
+    } 
+  })
+```
+5. 实现 `cardDataShowBuilder` 方法，用于展示证件数据。
+```typescript
+  @Builder 
+  cardDataShowBuilder() { 
+    List() { 
+      ForEach(this.cardDataSource, (cardData: Record<string, string>) => { 
+        ListItem() { 
+          Column() { 
+            Image(cardData.cardImageUri) 
+              .objectFit(ImageFit.Contain) 
+              .width(100) 
+              .height(100) 
+            Text(JSON.stringify(cardData)) 
+              .width('100%') 
+              .fontSize(12) 
+          } 
+        } 
+      }) 
+    } 
+    .listDirection(Axis.Vertical) 
+    .alignListItem(ListItemAlign.Center) 
+    .margin({ 
+      top: 50 
+    }) 
+    .width('100%') 
+    .height('100%') 
+  }
+```
+
+## 完整示例代码
 ```typescript
 import { CardRecognition, CardType, CardSide, ShootingMode } from "@kit.VisionKit" 
 import { router } from "@kit.ArkUI"; 
